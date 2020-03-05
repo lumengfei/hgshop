@@ -42,11 +42,25 @@
 	<!-- void updateSpec(int id); -->
 
 	<!-- Spec findById(int id); -->
+	<select id="findById" resultMap="spec">
+		SELECT * FROM hg_spec WHERE id=#{value}
+	</select>
+
 
 	<!-- void updateSpecOutionBatch(int[] ids); -->
-
+		<delete id="deleteSpecOutionBatch">
+   		DELETE FROM hg_spec_option WHERE spec_id IN 
+   		<foreach collection="array" item="id" open="(" close=")"  separator=",">
+   		#{id}
+   		</foreach>
+   	</delete>
 	<!-- void updateSpecBatch(int[] ids); -->
-   
+   	<delete id="deleteSpecBatch">
+   		DELETE FROM hg_spec WHERE id IN 
+   		<foreach collection="array" item="id" open="(" close=")"  separator=",">
+   		#{id}
+   		</foreach>
+   	</delete>
    
    
    

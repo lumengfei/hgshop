@@ -87,8 +87,9 @@
   </tr>
   </c:forEach>
   <tr>
-  	<th colspan="3">
+  	<th colspan="3"><center>
 		<jsp:include page="../common/page.jsp"></jsp:include>
+		</center>
   	</th>
   </tr>
 </table>
@@ -211,11 +212,63 @@
 	
 	
 	
-	
+	/**
+	* 修改一个checkbox
+	*/
 	function  selectedOne(){
+		// 判断是否所有的都被选中了
+		var allSelectd = $("[name=ids]:checked").length==$("[name=ids]").length;
+		
+		//设置全选的框
+		$("#allSel").prop("checked",allSelectd);
 		
 	}
 	
 	
+	/*
+		根据Id删除一条数据delSec
+	*/
+	function delSec(id){
+		if(window.confirm("是否删除id为"+id+"的规格")){
+			$.post("spec/delSpec",{id:id},function(obj){
+				if(obj.data==1){
+					alert(obj.msg)
+					refresh();
+				}else{
+					alert(obj.error)
+				}
+			},"json")
+		}
+		return ;
+	}
 	
+	/*
+		根据选中的数据进行批量删除
+	*/
+	function delBatch(){
+		if($("[name=ids]:checked").length<=0){
+			alert("请选择您要删除的数据")
+			return ;
+		}
+		// 组织删除的数据
+		var delIds  = new Array();
+		$("[name=ids]:checked").each(function(){
+			delIds.push($(this).val());
+		})
+		
+		
+		if(confirm("您确认删除这些数据么？")){
+			$.post("/spec/delSpecBatch",{ids:delIds},function(obj){
+				if(obj.data==1){
+					alert(obj.msg)
+					refresh();
+				}else{
+					alert(obj.error)
+				}
+				
+			});
+		}else{
+			return;
+		}
+	}
  </script>

@@ -72,4 +72,33 @@ public class SpecController {
 		return new CallBack(1, "", "添加成功");
 	}
 	
+	/**
+	 * 根据id进行删除
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("delSpec")
+	@ResponseBody
+	public CallBack delSpec(int id){
+		
+		CallBack callBack= specService.delete(id);
+		
+		return callBack;
+	}
+	
+	
+	/**
+	 * 根据id进行删除
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("delSpecBatch")
+	@ResponseBody
+	public CallBack delSpecBatch(@RequestParam(name="ids[]")int[] ids){
+		
+		CallBack callBack= specService.deleteBatch(ids);
+		
+		return callBack;
+	}
+	
 }

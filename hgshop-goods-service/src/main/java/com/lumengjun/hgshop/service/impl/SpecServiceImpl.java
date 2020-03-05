@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lumengjun.hgshop.dao.SpecMapper;
+import com.lumengjun.hgshop.pojo.CallBack;
 import com.lumengjun.hgshop.pojo.Spec;
 import com.lumengjun.hgshop.pojo.SpecOption;
 import com.lumengjun.hgshop.service.SpecService;
@@ -56,11 +57,17 @@ public class SpecServiceImpl implements SpecService{
 	}
 
 	@Override
-	public int delete(int id) {
-		specMapper.updateSpecOution(id);
-		specMapper.updateSpec(id);
-		// TODO Auto-generated method stub
-		return 1;
+	public CallBack delete(int id) {
+		
+		try {
+			specMapper.deleteSpecOution(id);
+			specMapper.deleteSpec(id);
+		} catch (Exception e) {
+			
+			return new CallBack(2,"删除失败", "");
+		}
+		
+		return new CallBack(1,"", "删除成功");
 	}
 
 	@Override
@@ -70,13 +77,19 @@ public class SpecServiceImpl implements SpecService{
 	}
 
 	@Override
-	public int deleteBatch(int[] ids) {
+	public CallBack deleteBatch(int[] ids) {
 		// TODO Auto-generated method stub
+		try {
+			specMapper.deleteSpecOutionBatch(ids);
+			
+			specMapper.deleteSpecBatch(ids);
+			
+	} catch (Exception e) {
 		
-			specMapper.updateSpecOutionBatch(ids);
-			specMapper.updateSpecBatch(ids);
-		
-		return 1;
+		return new CallBack(2,"删除失败", "");
+	}
+	
+	return new CallBack(1,"", "删除成功");
 	}
 
 }

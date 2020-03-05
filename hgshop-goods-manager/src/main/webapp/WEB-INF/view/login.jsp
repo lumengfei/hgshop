@@ -29,12 +29,13 @@
 	
 
 
-<!-- <script type="text/javascript">
-function login(){
-	alert($("[name=password]").val())
-	alert(md5($("[name=password]").val()))
-}
-</script> -->
+ <script type="text/javascript">
+/* function login(){
+	alert($("[name=name]").val())
+	alert(md5($("[name=name]").val()))
+	$("#mi").val(md5($("[name=name]").val()))
+} */
+</script> 
 
     <style>
       .bd-placeholder-img {
@@ -68,7 +69,7 @@ function login(){
       <input type="checkbox" value="remember-me"> 下次直接登录
     </label>
   </div>
-  <button class="btn btn-lg btn-primary btn-block"  type="submit">登录</button>
+  <button class="btn btn-lg btn-primary btn-block"   type="submit">登录</button>
   <p class="mt-5 mb-3 text-muted">© 2017-2020</p>
 </form>
 
