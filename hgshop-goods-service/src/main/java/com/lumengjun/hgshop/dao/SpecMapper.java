@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import com.lumengjun.hgshop.pojo.Spec;
 import com.lumengjun.hgshop.pojo.SpecOption;
@@ -18,7 +19,8 @@ public interface SpecMapper {
 
 	void addOption(SpecOption specOption);
 
-	int updateSpec(Spec spec);
+	@Update("UPDATE hg_spec SET spec_name =#{specName} WHERE id=#{id}")
+	void updateSpec(Spec spec);
 
 	@Delete("DELETE FROM hg_spec_option WHERE spec_id =#{value}")
 	int deleteSpecOution(int id);

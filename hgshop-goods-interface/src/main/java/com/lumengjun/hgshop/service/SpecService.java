@@ -20,7 +20,7 @@ public interface SpecService {
 	 */
 	int addSpec(Spec spec);
 	
-	int update(Spec spec);
+	CallBack update(Spec spec);
 	/**
 	 * 规格id进行删除
 	 * @param id

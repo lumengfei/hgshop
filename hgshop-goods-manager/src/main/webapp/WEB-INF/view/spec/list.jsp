@@ -58,6 +58,48 @@
   </div>
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdropUpdate" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropUpdateLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">修改规格</h5>
+         <button type="button" onclick="updProp()"> 添加属性
+         </button>
+         
+       			 
+         
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        	
+      </div>
+      <div class="modal-body">
+        	<form id="updspec">
+        			<input type="hidden" name="id" id="upId">
+        		 <div class="form-group">
+    				<label for="specName">规格名称</label>
+    				<input type="text" class="form-control" name="specName" id="upSpecName" aria-describedby="specNamelHelp">
+    				<small id="specNamelHelp" class="form-text text-muted">请输入规格名称</small>
+  				</div>
+  				<!-- <div class="form-group">
+    				<label for="inputAddress">属性值</label>
+    				<input type="text" name="options[0].optionName" class="form-control" id="upInputAddress" placeholder="1234 Main St">
+    				<button onclick="$(this).parent().remove()">删除</buttonn>
+  				</div> -->
+  				
+    			
+        	</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onclick="upCommitSpec()">修改提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   
   
 <table class="table">
@@ -97,6 +139,75 @@
   
  <script type="text/javascript">
 	var addindex=1;
+	
+	var updindex=0;
+	
+	function openUpdateSpec(id){
+		$.post("/spec/getSpec",{id:id},function(obj){
+			alert(obj)
+			$("#upId").val(obj.id)
+			$("#upSpecName").val(obj.specName)
+			for(var i in obj.options){
+				$("#updspec").append('<div class="form-group">'+
+	    				'<label for="inputAddress">属性值</label>'+
+	    				'<input type="text" name="options['+updindex+'].optionName"  value="'+obj.options[i].optionName+'" class="form-control" id="upInputAddress" placeholder="1234 Main St">'+
+	    				'<button onclick="$(this).parent().remove()">删除</button>'+
+	    				'</div>')
+	    	updindex++;
+			}
+		},"json")
+		
+		
+		//弹出模态框
+		$("#staticBackdropUpdate").modal('show')
+	}
+	
+	
+	/*
+	添加修改属性框
+	*/
+	function updProp(){
+		$("#updspec").append('<div class="form-group">'+
+				'<label for="inputAddress">属性值</label>'+
+				'<input type="text" name="options['+updindex+'].optionName"  class="form-control" id="upInputAddress" placeholder="1234 Main St">'+
+				'<button onclick="$(this).parent().remove()">删除</button>'+
+				'</div>')
+		updindex++;
+	} 
+	
+	
+	/**
+	  提交修改数据	
+	*/
+	function upCommitSpec(){
+		
+		//addspec
+		 var data =$("#updspec").serialize(); 
+		 
+		/*  var data = new FormData($("#addspec")[0]);  */
+		 
+		$.post("/spec/updateSpec",data,function(obj){
+			if(obj.data==1){
+				alert(obj.msg)
+				 $('#staticBackdropUpdate').modal('hide')
+				 
+			}else{
+				alert(obj.error)
+			}
+		},"json")  
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+		添加属性框
+	*/
 	function addProp(){
 		$("#addspec").append('<div class="form-group">'+
     				'<label for="inputAddress">属性值</label>'+
@@ -116,7 +227,7 @@
 		 var data =$("#addspec").serialize(); 
 		 
 		/*  var data = new FormData($("#addspec")[0]);  */
-		  alert(data)
+		 
 		$.post("/spec/add",data,function(obj){
 			if(obj.data==1){
 				alert(obj.msg)
@@ -136,6 +247,18 @@
 	
 	// 给模态框增加关闭以后的事件  
 	$('#staticBackdrop').on('hidden.bs.modal', function (e) {
+		  // do something...
+		refresh();
+	})
+	
+	// 给模态框增加显示成成功后的事件  
+	$('#staticBackdropUpdate').on('shown.bs.modal', function (e) {
+		  // do something...
+		resetAddForm();
+	})
+	
+	// 给模态框增加关闭以后的事件  
+	$('#staticBackdropUpdate').on('hidden.bs.modal', function (e) {
 		  // do something...
 		refresh();
 	})

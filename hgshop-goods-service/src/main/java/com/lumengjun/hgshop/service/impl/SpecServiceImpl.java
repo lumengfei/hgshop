@@ -51,9 +51,22 @@ public class SpecServiceImpl implements SpecService{
 	}
 
 	@Override
-	public int update(Spec spec) {
+	public CallBack update(Spec spec) {
+		try {
+			specMapper.deleteSpecOution(spec.getId());
+			specMapper.updateSpec(spec);
+			List<SpecOption> options = spec.getOptions();
+			//添加规格的属性
+			for (SpecOption specOption : options) {
+				specOption.setSpecId(spec.getId());
+				specMapper.addOption(specOption);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return new CallBack(2,"修改失败", "");
+		}
 		// TODO Auto-generated method stub
-		return specMapper.updateSpec(spec);
+		return new CallBack(1, "", "修改成功");
 	}
 
 	@Override
