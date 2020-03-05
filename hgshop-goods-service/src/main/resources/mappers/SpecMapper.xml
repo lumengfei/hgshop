@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lumengjun.hgshop.dao.SpecMapper">
+   
+   <resultMap type="com.lumengjun.hgshop.pojo.Spec" id="spec">
+   <id property="id" column="id"/>
+   <result property="specName" column="spec_name"/>
+   <collection property="options" column="id" ofType="com.lumengjun.hgshop.pojo.SpecOption"  select="selectOptions"></collection>
+   </resultMap>
+   <select id="selectOptions" resultType="com.lumengjun.hgshop.pojo.SpecOption">
+  	 SELECT id,option_name optionName,spec_id specId,orders FROM hg_spec_option WHERE spec_id=#{value}
+   </select>
+   
+   
+   <!-- List<Spec> list(String name); -->
+	<select id="list" resultMap="spec">
+		SELECT * FROM hg_spec
+		
+		<where>
+			<if test="name != ''">
+				AND spec_name like concat('%',#{name},'%')
+			</if>
+		</where>
+		ORDER BY id DESC
+	</select>
+
+
+	<!-- void addSpec(Spec spec); -->
+	<insert id="addSpec" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		INSERT INTO hg_spec(spec_name) VALUES(#{specName})
+	</insert>
+	
+
+	<!-- void addOption(SpecOption specOption); -->
+		<insert id="addOption">
+		INSERT INTO hg_spec_option(option_name,spec_id,orders) VALUES(#{optionName},#{specId},#{orders})
+		</insert>
+	<!-- int updateSpec(Spec spec); -->
+
+	<!-- int updateSpecOution(int id); -->
+
+	<!-- void updateSpec(int id); -->
+
+	<!-- Spec findById(int id); -->
+
+	<!-- void updateSpecOutionBatch(int[] ids); -->
+
+	<!-- void updateSpecBatch(int[] ids); -->
+   
+   
+   
+   
+   
+</mapper>

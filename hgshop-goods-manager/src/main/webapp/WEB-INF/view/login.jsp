@@ -21,9 +21,20 @@
 <link rel="manifest" href="https://v4.bootcss.com/docs/assets/img/favicons/manifest.json">
 <link rel="mask-icon" href="https://v4.bootcss.com/docs/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
 <link rel="icon" href="https://v4.bootcss.com/docs/assets/img/favicons/favicon.ico">
+<script type="text/javascript" src="/resource/jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/resource/bootstrap4/js/bootstrap.js"></script>
 <meta name="msapplication-config" content="/docs/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#563d7c">
+<script type="text/javascript" src="https://cdn.bootcss.com/blueimp-md5/2.11.1/js/md5.js"></script>
+	
 
+
+<!-- <script type="text/javascript">
+function login(){
+	alert($("[name=password]").val())
+	alert(md5($("[name=password]").val()))
+}
+</script> -->
 
     <style>
       .bd-placeholder-img {
@@ -48,16 +59,16 @@
     <form class="form-signin" action="/login" method="post">
   <img class="mb-4" src="login_files/bootstrap-solid.svg" alt="" width="72" height="72">
   <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
-  <label for="inputEmail" class="sr-only">Email address</label>
+  <label for="inputEmail" class="sr-only">用户名</label>
   <input type="text"  name="name" id="inputEmail" class="form-control" placeholder="用户名" required="" autofocus="">
-  <label for="inputPassword" class="sr-only">Password</label>
+  <label for="inputPassword" class="sr-only">密码</label>
   <input type="password" id="inputPassword" name="password" class="form-control" placeholder="密码" required="">
   <div class="checkbox mb-3">
     <label>
       <input type="checkbox" value="remember-me"> 下次直接登录
     </label>
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+  <button class="btn btn-lg btn-primary btn-block"  type="submit">登录</button>
   <p class="mt-5 mb-3 text-muted">© 2017-2020</p>
 </form>
 
