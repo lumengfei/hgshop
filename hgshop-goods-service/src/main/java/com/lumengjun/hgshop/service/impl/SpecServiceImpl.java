@@ -105,4 +105,10 @@ public class SpecServiceImpl implements SpecService{
 	return new CallBack(1,"", "删除成功");
 	}
 
+	@Override
+	public List<Spec> listAll() {
+		
+		return specMapper.list("");
+	}
+
 }

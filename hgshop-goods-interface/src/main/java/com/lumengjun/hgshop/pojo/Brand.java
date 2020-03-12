@@ -44,6 +44,23 @@ public class Brand implements Serializable{
 		this.deletedFlag = deletedFlag;
 	}
 	
+	
+	
+	public Brand() {
+		super();
+	}
+	public Brand(Integer id, String name, String firstChar, int deletedFlag) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.firstChar = firstChar;
+		this.deletedFlag = deletedFlag;
+	}
+	@Override
+	public String toString() {
+		return "Brand [id=" + id + ", name=" + name + ", firstChar="
+				+ firstChar + ", deletedFlag=" + deletedFlag + "]";
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

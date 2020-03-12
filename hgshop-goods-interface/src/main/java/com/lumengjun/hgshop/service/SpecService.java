@@ -1,5 +1,7 @@
 package com.lumengjun.hgshop.service;
 
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
 import com.lumengjun.hgshop.pojo.CallBack;
 import com.lumengjun.hgshop.pojo.Spec;
@@ -13,6 +15,8 @@ public interface SpecService {
 	 * @return
 	 */
 	PageInfo<Spec> list(String name,int page);
+	
+	List<Spec> listAll();
 	/**
 	 * 添加规格
 	 * @param spec
@@ -39,4 +43,8 @@ public interface SpecService {
 	 * @return
 	 */
 	CallBack deleteBatch(int[] ids);
+
+
+	
+	
 }

@@ -108,7 +108,7 @@
 						<!-- 端口号 -->
 						<port>9094</port>
 						<!-- 项目访问路径 -->
-						<host>192.168.0.105</host>
+						<host>192.168.56.1</host>
 					</httpConnector>
 					<contextHandlers>
 						<jettyWebAppContext>
@@ -126,7 +126,7 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
-					<port>8080</port>
+					<port>8085</port>
 					<path>/</path>
 					<uriEncoding>UTF-8</uriEncoding>
 					<contextReloadable>true</contextReloadable>

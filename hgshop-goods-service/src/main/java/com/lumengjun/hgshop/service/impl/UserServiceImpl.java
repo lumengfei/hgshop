@@ -4,11 +4,11 @@ package com.lumengjun.hgshop.service.impl;
 
 
 import org.apache.dubbo.config.annotation.Service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lumengjun.hgshop.config.AdminProperties;
-import com.lumengjun.hgshop.dao.UserMapper;
-import com.lumengjun.hgshop.pojo.User;
+
 import com.lumengjun.hgshop.service.UserService;
 
 
@@ -22,8 +22,7 @@ import com.lumengjun.hgshop.service.UserService;
 @Service(interfaceClass=UserService.class,version="1.0.0")
 public class UserServiceImpl implements UserService{
 
-	@Autowired
-	UserMapper userMapper;
+	
 	
 	@Autowired
 	AdminProperties adminProperties;

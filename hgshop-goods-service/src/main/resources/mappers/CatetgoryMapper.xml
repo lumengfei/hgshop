@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lumengjun.hgshop.dao.CategoryMapper">
+   <resultMap type="com.lumengjun.hgshop.pojo.Category" id="getCat">
+   <id property="id" column="id"/>
+   <result property="parentId" column="parent_id"/>
+   <collection property="children" column="id" select="listChildren" ofType="com.lumengjun.hgshop.pojo.Category"></collection>
+   </resultMap>
+   <select id="listChildren" resultMap="getCat">
+   SELECT * FROM hg_category WHERE parent_id=#{value}
+   </select>
+   
+   <select id="tree" resultMap="getCat">
+   SELECT * FROM hg_category WHERE parent_id=0
+   </select>
+   
+   <select id="findById" resultType="com.lumengjun.hgshop.pojo.Category">
+	select id,name,path from hg_category where id=#{value}	
+</select>
+</mapper>

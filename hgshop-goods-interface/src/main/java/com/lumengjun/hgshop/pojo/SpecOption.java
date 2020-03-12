@@ -20,6 +20,22 @@ public class SpecOption implements Serializable{
 	private Integer specId;
 	//状态
 	private Integer orders=0;
+	
+	private String specName;
+	
+	
+
+	public String getSpecName() {
+		return specName;
+	}
+
+	public void setSpecName(String specName) {
+		this.specName = specName;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public Integer getId() {
 		return id;

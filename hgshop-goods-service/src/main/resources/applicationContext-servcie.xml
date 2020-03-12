@@ -57,7 +57,7 @@
 	<!-- 直连 -->
 	<!-- <dubbo:registry address="N/A" /> -->
 	<!-- 通讯协议 -->
-	<dubbo:protocol name="dubbo" port="20890" />
+	<dubbo:protocol name="dubbo" port="20891" />
 	<!-- 注解扫描配置 指定了扫描的包 -->
 	<dubbo:annotation
 		package="com.lumengjun.hgshop.service.impl" />

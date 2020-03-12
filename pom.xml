@@ -284,7 +284,7 @@
 						<!-- 端口号 -->
 						<port>9093</port>
 						<!-- 项目访问路径 -->
-						<host>192.168.1.105</host>
+						<host>192.168.56.1</host>
 					</httpConnector>
 					<contextHandlers>
 						<jettyWebAppContext>
@@ -308,5 +308,8 @@
   	<module>hgshop-goods-interface</module>
   	<module>hgshop-goods-service</module>
   	<module>hgshop-goods-manager</module>
+  	<module>hgshop-user-interface</module>
+  	<module>hgshop-user-service</module>
+  	<module>hgshop-web</module>
   </modules>
 </project>

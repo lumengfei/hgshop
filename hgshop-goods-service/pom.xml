@@ -196,7 +196,7 @@
 						<!-- 端口号 -->
 						<port>9093</port>
 						<!-- 项目访问路径 -->
-						<host>192.168.0.105</host>
+						<host>192.168.56.1</host>
 					</httpConnector>
 					<contextHandlers>
 						<jettyWebAppContext>

@@ -144,7 +144,7 @@
 	
 	function openUpdateSpec(id){
 		$.post("/spec/getSpec",{id:id},function(obj){
-			alert(obj)
+			
 			$("#upId").val(obj.id)
 			$("#upSpecName").val(obj.specName)
 			for(var i in obj.options){
@@ -263,22 +263,12 @@
 		refresh();
 	})
 	
-	//添加窗口的复位
-	function resetAddForm(){
-		$(".form-group-proper").each(function(){
-			$(this).remove();
-		})
-		addindex=1;
-		$("#specName").val("")
-		
-	}
-	
 	/**
 	* 刷新 而且保持查询条件和页码
 	*/
 	function refresh(){
 		
-		var url="/spec/list?name=${queryName}"+'&page=${pageInfo.pageNum}';
+		var url="/spec/list?name=${queryName}"+'&page=${info.pageNum}';
 		$("#main").load(url);
 	}
 	
